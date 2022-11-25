@@ -4,7 +4,7 @@ import './TodoTask.scss'
 
 interface Props {
     task: ITask;
-    completeTask(TaskNameToDelete: string): void;
+    completeTask: (TaskNameToDelete: string) => void;
 }
 
 const TodoTask = ({ task, completeTask }: Props) => {

@@ -1,23 +1,31 @@
 import React, {FC, ChangeEvent, useState} from 'react';
 import './App.scss'
+import TaskInput from './Components/TaskInput/TaskInput';
 import TodoTask from './Components/TodoTask/TodoTask';
 import { ITask } from './Interfaces';
 
+// interface IApp {
+//   testFunc: (e:number) => void
+// }
+
 const App: FC = () => {
 
-  const [task, setTask] = useState<string>('')
-  const [deadline, setDeadLine] = useState<number>(0)
-  const [todoList, setTodoList] = useState<ITask[]>([])
+  const [task, setTask] = useState<string>('');
+  const [deadline, setDeadLine] = useState<number>(0);
+  const [todoList, setTodoList] = useState<ITask[]>([]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) :void => {
-    if (event.target.name === 'task') {
-      setTask(event.target.value)
-    } else if (event.target.name === 'deadline') {
-      setDeadLine(Number(event.target.value))
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    let typeNameEvent = event.currentTarget.name;
+    let typeNameEventVal = event.currentTarget.value;
+
+    switch(typeNameEvent){
+      case 'Task':
+        setTask(typeNameEventVal)
+        break;
+      case 'Deadline':
+        setDeadLine(Number(typeNameEventVal))
+        break;        
     }
-
-
-    setTask(event.target.value)
   }
 
   const addTask = (): void => {
@@ -28,7 +36,7 @@ const App: FC = () => {
     setDeadLine(0)
   }
 
-  const completeTask = (TaskNameToDelete: string): void => {
+  const completeTask = (TaskNameToDelete: string) => {
     setTodoList(todoList.filter((task) => {
       return task.taskName !== TaskNameToDelete
     }))
@@ -38,8 +46,8 @@ const App: FC = () => {
     <div className="App">
       <div className='header'>
         <div className='inputContainer'>
-          <input type="text" placeholder='task' name='task' value={task} onChange={handleChange} />
-          <input type="number" placeholder='deadline (in days)' name='deadline' value={deadline} onChange={handleChange}/>
+          <TaskInput task={task} inputName={'Task'} handleChange={handleChange}/>
+          <TaskInput deadline={deadline} inputName={'Deadline'} handleChange={handleChange}/>
         </div>
         <button onClick={addTask}>Add task</button>
       </div>
