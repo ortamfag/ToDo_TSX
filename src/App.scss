@@ -1,57 +1,81 @@
+@mixin InterBold {
+    font-family: 'Inter';
+    font-weight: 700;
+}
+
+@mixin InterMedium {
+    font-family: 'Inter';
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter Bold'), local('Inter-Bold'), url('../public/fonts/Inter-Bold.woff2') format('woff2'), url('../public/fonts/Inter-Bold.woff') format('woff'), url('../public/fonts/Inter-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('Inter Medium'), local('Inter-Medium'), url('../public/fonts/Inter-Medium.woff2') format('woff2'), url('../public/fonts/Inter-Medium.woff') format('woff'), url('../public/fonts/Inter-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     padding: 0;
 }
 
+h2, h3, h4, p, span, a {
+    @include InterMedium;
+}
+
+
 .App{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    background-color: #17181f;
     width: 100vw;
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    @include InterMedium;
+    color: #FFFFFF
 }
 
-.header{
-    flex: 30%;
-    background-color: tomato;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items:center;
 
-    & .inputContainer {
+.nav{
+    background-color: #17181f;
+
+    &_active{
         display: flex;
-        flex-direction: column;
-    }
+        background-color: #20212c;
+        padding: 5px 10px;
 
-    & input {
-        width: 200px;
-        height: 40px;
-        border: none;
-        border-bottom-left-radius: 8px;
-        border-top-left-radius: 8px;
-        padding-left: 10px;
-        font-size: 17px;
-        border: 1px solid grey;
-    }
-
-    & button {
-        width: 70px;
-        height: 87px;
-        border: none;
-        border-bottom-right-radius: 8px;
-        border-top-right-radius: 8px;
-        padding-left: 10px;
-        cursor: pointer;
+        & img {
+            margin-right: 10px;
+        }
     }
 }
 
-.todoList{
-    flex: 70%;
-    width: 100%;
+.inputContainer{
     display: flex;
-    align-items: center;
-    padding-top: 50px;
     flex-direction: column;
+    align-items: center
+}
+
+.addTask{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #1d1e26;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #FFFFFF;
+    margin: 0 auto;
+
+    & img {
+        padding: 2px;
+        background-color: #fc76a1;
+        border-radius: 10px;
+        margin-right: 10px;
+    }
 }

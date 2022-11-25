@@ -44,18 +44,39 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <div className='header'>
-        <div className='inputContainer'>
-          <TaskInput task={task} inputName={'Task'} handleChange={handleChange}/>
-          <TaskInput deadline={deadline} inputName={'Deadline'} handleChange={handleChange}/>
+      <nav className="nav">
+        <div className="nav_active">
+          <img src="./img/dashboard.svg" alt="Dashboard icon" />
+          <p>Dashboard</p>
         </div>
-        <button onClick={addTask}>Add task</button>
-      </div>
-      <div className='todoList'>
-        {todoList.map((task: ITask, key: number) => {
-          return <TodoTask key={key} task={task} completeTask={completeTask}/>;
-        })}
-      </div>
+      </nav>
+
+      <main className="main">
+        <div className="inputContainer">
+          <TaskInput
+            task={task}
+            inputName={"Task"}
+            handleChange={handleChange}/>
+
+          <TaskInput
+            deadline={deadline}
+            inputName={"Deadline"}
+            handleChange={handleChange}/>
+        </div>
+
+        <button onClick={addTask} className='addTask'>
+          <img src="./img/addTask.svg" alt="addTask"/>
+          <p>Add a task</p>
+        </button>
+        
+        <div className="todoList">
+          {todoList.map((task: ITask, key: number) => {
+            return (
+              <TodoTask key={key} task={task} completeTask={completeTask} />
+            );
+          })}
+        </div>
+      </main>
     </div>
   );
 }

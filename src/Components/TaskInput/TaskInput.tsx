@@ -19,6 +19,7 @@ function TaskInput({inputName, task, deadline, handleChange}: Props) {
     }
   return (
     <input 
+        className='task_input'
         type={inputName === 'Task' ? 'text' : 'number'}
         name={inputName}
         placeholder={inputPlaceholder}
