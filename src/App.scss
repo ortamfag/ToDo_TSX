@@ -55,6 +55,10 @@ h2, h3, h4, p, span, a {
     }
 }
 
+.main{
+    padding: 0px 30%;
+}
+
 .inputContainer{
     display: flex;
     flex-direction: column;
@@ -63,19 +67,35 @@ h2, h3, h4, p, span, a {
 
 .addTask{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 5px;
-    border: 1px solid #1d1e26;
-    border-radius: 10px;
+    width: 100%;
+    padding: 2px 15px;
+    border: 1px solid #2e2f3a;
+    border-radius: 20px;
     background-color: transparent;
     color: #FFFFFF;
     margin: 0 auto;
+    cursor: pointer;
 
-    & img {
+    &:hover {
+        border: 1px solid #FFFFFF;
+        transition: .3s;
+    
+        & svg{
+            background-color: #FFFFFF;
+            transition: .3s;
+            transform: rotate(180deg);
+        }
+    }
+
+    & svg {
         padding: 2px;
         background-color: #fc76a1;
         border-radius: 10px;
         margin-right: 10px;
     }
+}
+
+.todoList {
+    margin-top: 40px;
 }
