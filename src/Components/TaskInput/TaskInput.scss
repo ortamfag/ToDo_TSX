@@ -5,9 +5,11 @@
     border-radius: 15px;
     margin: 10px auto;
     color: #FFFFFF;
+    width: 100%;
+    text-indent: 10px;
 
     &::placeholder {
-        color: #FFFFFF
+        color: #FFFFFF;
     }
 }
 

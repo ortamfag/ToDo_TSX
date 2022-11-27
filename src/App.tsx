@@ -38,11 +38,12 @@ const App: FC = () => {
     	setTodoList([...todoList, newTask])
     	setTask("")
     	setDeadLine(0)
+		toggleModal()
   	}
 
   	const completeTask = (TaskNameToDelete: string) => {
     	const completeTask = { taskName: TaskNameToDelete, deadline: deadline }
-    	setCompleteList([...completeList, completeTask])
+    	setCompleteList([...completeList, completeTask].reverse())
 
     	setTodoList(todoList.filter((task) => {
       		return task.taskName !== TaskNameToDelete
@@ -59,30 +60,27 @@ const App: FC = () => {
       		</nav>
 
       		<main className="main">
-        		<div className={isModalVisible === true ? 'input_modalWrapper__active' : 'input_modalWrapper'}>
-          			<div className='bg'>
-            			<div className='input_modalWrapper__body'>
-              				<div className='input_modalWrapper__content'>
-               					<div className="input_container">
-                  					<TaskInput
-										task={task}
-										inputName={"Task"}
-										handleChange={handleChange}/>
+        		<div className={isModalVisible === true ? 'input_modalWrapper input_modalWrapper__active' : 'input_modalWrapper'}>
+          			<div className='bg' onClick={toggleModal}></div>
+					<div className='input_modalWrapper__body'>
+						<div className='input_modalWrapper__content'>
+							<img onClick={toggleModal} src="./img/exit.svg" alt="Exit" />
+							<h2>Create a new task</h2>
+							<div className="input_container">
+								<TaskInput
+									task={task}
+									inputName={"Task"}
+									handleChange={handleChange}/>
 
-									<TaskInput
-										deadline={deadline}
-										inputName={"Deadline"}
-										handleChange={handleChange}/>
-                				</div>
-
-              					<button onClick={addTask} className='addTask'>
-									<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="black"/>
-									</svg>
-
-                					<p>Create</p>
-              					</button>
+								<TaskInput
+									deadline={deadline}
+									inputName={"Deadline"}
+									handleChange={handleChange}/>
 							</div>
+
+							<button onClick={addTask} className='addTask createTask'>
+								<p>Create</p>
+							</button>
 						</div>
 					</div>
 				</div>
