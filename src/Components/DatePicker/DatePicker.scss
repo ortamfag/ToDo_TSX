@@ -1,0 +1,69 @@
+.datePicker {
+    position: relative;
+    width: 100%;
+    background: #FFFFFF;
+    margin: 30px auto;
+    user-select: none;
+
+    &_selected {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #313131;
+        font-size: 28px;
+    }
+
+    &_dates {
+        display: none;
+
+        &__active{
+            display: block;
+        }
+
+        &__month {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #EEE;
+
+            & div{
+                color: #000;
+            }
+        }
+
+        &__days {
+           height: 200px;
+           background: #FFFFFF;
+
+           display: grid;
+           grid-template-columns: repeat(7, 1fr);
+
+           & .day {
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           }
+        }
+    }
+
+    &_arrows{
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #313131;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+
+.selected {
+    background-color: #00CA85;
+}

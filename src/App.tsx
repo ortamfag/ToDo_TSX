@@ -4,6 +4,7 @@ import { ITask } from './Interfaces';
 import TaskInput from './Components/TaskInput/TaskInput';
 import TodoTask from './Components/TodoTask/TodoTask';
 import CompleteTask from './Components/CompleteTask/CompleteTask';
+import DatePicker from './Components/DatePicker/DatePicker';
 
 
 const App: FC = () => {
@@ -11,7 +12,7 @@ const App: FC = () => {
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
 
 	const [task, setTask] = useState<string>('');
-	const [deadline, setDeadLine] = useState<number>(0);
+	const [deadline, setDeadLine] = useState<string>('Date of deadline');
 	const [todoList, setTodoList] = useState<ITask[]>([]);
 	const [completeList, setCompleteList] = useState<ITask[]>([]);
 
@@ -22,11 +23,12 @@ const App: FC = () => {
 	//дата
 	const todayDate = new Date()
 	const dayOfDate = todayDate.getDate()
-	const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	const monthOfDate = todayDate.getMonth()
 	const weekDayOfDate = todayDate.toLocaleString(
 		'en-En', {weekday: 'long'}
 	)
+	const yearOfDate = todayDate.getFullYear()
 
   	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     	let typeNameEvent = event.currentTarget.name;
@@ -37,7 +39,7 @@ const App: FC = () => {
         		setTask(typeNameEventVal)
         		break;
       		case 'Deadline':
-        		setDeadLine(Number(typeNameEventVal))
+        		setDeadLine(typeNameEventVal)
         		break;        
     	}
   	}
@@ -46,7 +48,7 @@ const App: FC = () => {
     	const newTask = { taskName: task, deadline: deadline }
     	setTodoList([...todoList, newTask])
     	setTask("")
-    	setDeadLine(0)
+    	setDeadLine('Date of deadline')
 		toggleModal()
   	}
 
@@ -81,7 +83,12 @@ const App: FC = () => {
 									inputName={"Task"}
 									handleChange={handleChange}/>
 
-								<TaskInput
+								<DatePicker
+									todayDate={todayDate}
+									dayOfDate={dayOfDate}
+									monthOfDate={monthOfDate}
+									yearOfDate={yearOfDate}
+									months={months}
 									deadline={deadline}
 									inputName={"Deadline"}
 									handleChange={handleChange}/>
@@ -94,7 +101,7 @@ const App: FC = () => {
 					</div>
 				</div>
 				
-				<h1>{`Hello, today is ${dayOfDate} ${month[monthOfDate]}, ${weekDayOfDate}`}</h1>
+				<h1>{`Hello, today is ${dayOfDate} ${months[monthOfDate]}, ${weekDayOfDate}`}</h1>
 				<h2>What are we going <span className='title_span'>ToDo</span>?</h2>
 
         		<button onClick={toggleModal} className='addTask'>

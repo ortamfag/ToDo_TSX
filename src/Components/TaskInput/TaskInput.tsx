@@ -4,7 +4,7 @@ import './TaskInput.scss'
 interface Props {
     inputName: string;
     task?: string;
-    deadline?: number;
+    deadline?: string;
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -20,7 +20,7 @@ function TaskInput({inputName, task, deadline, handleChange}: Props) {
   return (
     <input 
         className='task_input'
-        type={inputName === 'Task' ? 'text' : 'number'}
+        type={inputName === 'Task' ? 'text' : 'date'}
         name={inputName}
         placeholder={inputPlaceholder}
         value={inputName === 'Task' ? task : deadline}
