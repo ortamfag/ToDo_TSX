@@ -175,6 +175,11 @@ h2, h3, h4, p, span, a {
 		transition-timing-function: ease;
 		background-position: 399px;
 	}
+
+	& p {
+		margin-right: auto;
+		margin-left: auto;
+	}
 }
 
 .todoList {

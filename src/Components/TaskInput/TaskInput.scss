@@ -7,6 +7,12 @@
     color: #FFFFFF;
     width: 100%;
     text-indent: 10px;
+    outline: none;
+
+    &:focus::placeholder{
+        color: transparent;
+        transition: .2s;
+    }
 
     &::placeholder {
         color: #FFFFFF;
