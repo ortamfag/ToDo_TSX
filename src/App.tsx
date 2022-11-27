@@ -19,6 +19,15 @@ const App: FC = () => {
 		setIsModalVisible(wasModalVisible => !wasModalVisible) 
 	}
 
+	//дата
+	const todayDate = new Date()
+	const dayOfDate = todayDate.getDate()
+	const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	const monthOfDate = todayDate.getMonth()
+	const weekDayOfDate = todayDate.toLocaleString(
+		'en-En', {weekday: 'long'}
+	)
+
   	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     	let typeNameEvent = event.currentTarget.name;
     	let typeNameEventVal = event.currentTarget.value;
@@ -84,6 +93,9 @@ const App: FC = () => {
 						</div>
 					</div>
 				</div>
+				
+				<h1>{`Hello, today is ${dayOfDate} ${month[monthOfDate]}, ${weekDayOfDate}`}</h1>
+				<h2>What are we going <span className='title_span'>ToDo</span>?</h2>
 
         		<button onClick={toggleModal} className='addTask'>
           			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
