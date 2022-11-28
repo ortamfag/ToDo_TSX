@@ -1,0 +1,18 @@
+.selected p {
+    transition: .3s;
+    border: 2px solid #fc76a1;
+    background: #fc76a1;
+}
+
+.day p {
+    cursor: pointer;
+
+    &:hover {
+        color: #fc76a1;
+        transition: .3s;
+    }
+}
+
+.selected p:hover {
+    color: #FFFFFF !important;
+}

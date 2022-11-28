@@ -3,40 +3,38 @@ import MonthDay from '../MonthDay/MonthDay';
 import './DatePicker.scss'
 
 interface Props {
-    inputName: string;
-    task?: string;
-    deadline?: string;
-    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
     months: string[];
     todayDate: Date;
     dayOfDate: number;
     monthOfDate: number;
     yearOfDate: number;
+    updateDeadline: (value: Date) => void
 }
 
-function DatePicker({inputName, task, deadline, handleChange, months, todayDate, dayOfDate, monthOfDate, yearOfDate}: Props) {
+function DatePicker({months, todayDate, dayOfDate, monthOfDate, yearOfDate, updateDeadline}: Props) {
 
     const [isDatesActive, setIsDatesActive] = useState<boolean>(false)
 
-    //даты, которые выбираем тумблером
-    const [selectedDate, setSelectedDate] = useState<Date>(todayDate)
+    //просматриваемые даты
     const [selectedDay, setSelectedDay] = useState<number>(dayOfDate)
     const [selectedMonth, setSelectedMonth] = useState<number>(monthOfDate)
     const [selectedYear, setSelectedYear] = useState<number>(yearOfDate)
 
-    //даты тыканием
+    //выбранные даты
     const [deadlineDate, setDeadlineDate] = useState<Date>(todayDate)
     const [deadlineDay, setDeadlineDay] = useState<number>(dayOfDate)
     const [deadlineMonth, setDeadlineMonth] = useState<number>(monthOfDate)
     const [deadlineYear, setDeadlineYear] = useState<number>(yearOfDate)
 
-    const [monthDays, setMonthDays] = useState<number[]>([])
+    const [monthDays, setMonthDays] = useState<number[]>([]) //массив с месяцами
 
-    const [stateDay, setStateDay] = useState<number>(0) //костыль костылей
+    //костыли, чтобы юз эффект работал
+    const [stateDay, setStateDay] = useState<number>(0)
+    const [stateMonth, setStateMonth] = useState<number>(0)
 
     const toggleDatePicker = (event: MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
-        if (String(event.currentTarget.classList) === 'datePicker') {
+        if (String(event.currentTarget.classList) === 'datePicker') { 
             setIsDatesActive(isDatesActive => !isDatesActive) 
         }
         createDays(selectedMonth + 1)
@@ -45,8 +43,22 @@ function DatePicker({inputName, task, deadline, handleChange, months, todayDate,
     const createDays = (selectedMonth: number) => {
         let amountDays = 31;
 
-        if (selectedMonth === 1) {
-            amountDays = 28
+        switch (selectedMonth) {
+            case 2:
+                amountDays = 28
+                break
+            case 4:
+                amountDays = 30
+                break
+            case 6:
+                amountDays = 30
+                break
+            case 9:
+                amountDays = 30
+                break
+            case 11:
+                amountDays = 30
+                break
         }
 
         let daysInMonths: number[] = []
@@ -103,6 +115,11 @@ function DatePicker({inputName, task, deadline, handleChange, months, todayDate,
             setDeadlineDate(new Date(selectedYear + '-' + (selectedMonth + 1) + '-' + (selectedDay)))
             setStateDay(selectedDay)
         }
+
+        if (selectedMonth !== stateMonth) {
+            createDays(selectedMonth + 1)
+            setStateMonth(selectedMonth)
+        }
     })
 
     return (
@@ -111,9 +128,20 @@ function DatePicker({inputName, task, deadline, handleChange, months, todayDate,
 
             <div onClick={toggleDatePicker} className={isDatesActive === true ? 'datePicker_dates datePicker_dates__active' : 'datePicker_dates'}>
                 <div className='datePicker_dates__month'>
-                    <div onClick={goToPrevMonth} className='datePicker_arrows prev-nth'>&lt;</div>
+                    <div onClick={goToPrevMonth} className='datePicker_arrows prev-nth'>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 19.5L7.5 12L15 4.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                    </div>
+
                     <div className='mth'>{`${months[selectedMonth]} ${' '} ${selectedYear}`}</div>
-                    <div onClick={goToNextMonth} className='datePicker_arrows next-mth'>&gt;</div>
+
+                    <div onClick={goToNextMonth} className='datePicker_arrows next-mth'>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 4.5L16.5 12L9 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                 </div>
 
                 <div className='datePicker_dates__days'>
@@ -122,17 +150,13 @@ function DatePicker({inputName, task, deadline, handleChange, months, todayDate,
                             <MonthDay
                                 el={el} 
                                 key={key} 
-                                monthOfDate={monthOfDate}
-                                yearOfDate={yearOfDate}
-
                                 selectedDay={selectedDay} 
                                 selectedYear={selectedYear} 
-                                selectedMonth={selectedMonth}
-
-                                deadlineDay={deadlineDay} 
+                                selectedMonth={selectedMonth} 
                                 deadlineYear={deadlineYear} 
                                 deadlineMonth={deadlineMonth}
-                                newDeadlineDay={newDeadlineDay}/>
+                                newDeadlineDay={newDeadlineDay}
+                                />
                         )
                     })}
                     

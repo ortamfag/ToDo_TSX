@@ -19,7 +19,7 @@ const TodoTask = ({ task, completeTask }: Props) => {
 
         	<div className='task_content'>
             	<span>{task.taskName}</span>
-            	<span>{task.deadline} days</span>
+            	<span>{task.deadline}</span>
         	</div>
     	</div>
   	)

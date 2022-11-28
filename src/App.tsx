@@ -1,4 +1,4 @@
-import React, {FC, ChangeEvent, useState} from 'react';
+import React, {FC, ChangeEvent, MouseEvent, useState} from 'react';
 import './App.scss'
 import { ITask } from './Interfaces';
 import TaskInput from './Components/TaskInput/TaskInput';
@@ -43,6 +43,10 @@ const App: FC = () => {
         		break;        
     	}
   	}
+
+	const updateDeadline = (value: Date) => {
+		setDeadLine(String(value))
+	}
 
   	const addTask = (): void => {
     	const newTask = { taskName: task, deadline: deadline }
@@ -89,9 +93,8 @@ const App: FC = () => {
 									monthOfDate={monthOfDate}
 									yearOfDate={yearOfDate}
 									months={months}
-									deadline={deadline}
-									inputName={"Deadline"}
-									handleChange={handleChange}/>
+									updateDeadline={updateDeadline}
+									/>
 							</div>
 
 							<button onClick={addTask} className='addTask createTask'>

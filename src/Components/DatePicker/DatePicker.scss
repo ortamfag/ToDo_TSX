@@ -4,6 +4,7 @@
     background: #20212c;
     margin: 30px auto;
     user-select: none;
+    border-radius: 20px;
 
     &_selected {
         width: 100%;
@@ -28,9 +29,8 @@
 
         &__month {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
-            border-bottom: 2px solid #EEE;
 
             & div{
                 color: #FFFFFF;
@@ -44,6 +44,7 @@
            display: grid;
            grid-template-columns: repeat(7, 1fr);
            padding: 5px;
+           border-radius: 20px;
 
            & .day {
             color: #FFFFFF;
@@ -77,12 +78,10 @@
         color: #FFFFFF;
         font-size: 20px;
         cursor: pointer;
+
+        &:hover svg path{
+            transition: .3s;
+            stroke: #fc76a1
+        }
     }
-}
-
-
-.selected p {
-    transition: .3s;
-    border: 2px solid #fc76a1;
-    background: #fc76a1;
 }
