@@ -6,8 +6,16 @@ import TodoTask from './Components/TodoTask/TodoTask';
 import CompleteTask from './Components/CompleteTask/CompleteTask';
 import DatePicker from './Components/DatePicker/DatePicker';
 
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { deadlineSlice } from './store/reducers/DeadlineSlice';
+
 
 const App: FC = () => {
+	//redux
+	const { deadlineText } = useAppSelector(state => state.deadlineReducer)
+	const { date } = deadlineSlice.actions
+	const dispatch = useAppDispatch()
+
 
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
 
@@ -50,6 +58,8 @@ const App: FC = () => {
 
   	const addTask = (): void => {
     	const newTask = { taskName: task, deadline: deadline }
+		console.log(newTask.deadline)
+		
     	setTodoList([...todoList, newTask])
     	setTask("")
     	setDeadLine('Date of deadline')
