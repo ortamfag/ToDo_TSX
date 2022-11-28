@@ -1,7 +1,7 @@
 .datePicker {
     position: relative;
     width: 100%;
-    background: #FFFFFF;
+    background: #20212c;
     margin: 30px auto;
     user-select: none;
 
@@ -13,8 +13,10 @@
         justify-content: center;
         align-items: center;
 
-        color: #313131;
+        color: #FFFFFF;
         font-size: 28px;
+
+        padding: 5px;
     }
 
     &_dates {
@@ -31,22 +33,37 @@
             border-bottom: 2px solid #EEE;
 
             & div{
-                color: #000;
+                color: #FFFFFF;
             }
         }
 
         &__days {
            height: 200px;
-           background: #FFFFFF;
+           background: #20212c;
 
            display: grid;
            grid-template-columns: repeat(7, 1fr);
+           padding: 5px;
 
            & .day {
-            color: #000;
+            color: #FFFFFF;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: auto;
+            height: 40px;
+
+            & p {
+                margin-block-end: 0px;
+                margin-block-start: 0px;
+                padding: 7px;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 20px;
+            }
            }
         }
     }
@@ -57,13 +74,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #313131;
+        color: #FFFFFF;
         font-size: 20px;
         cursor: pointer;
     }
 }
 
 
-.selected {
-    background-color: #00CA85;
+.selected p {
+    transition: .3s;
+    border: 2px solid #fc76a1;
+    background: #fc76a1;
 }

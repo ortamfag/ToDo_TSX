@@ -23,7 +23,9 @@ function MonthDay({el, selectedDay, selectedYear, selectedMonth, monthOfDate, ye
         }
     }
   return (
-    <div onClick={() => newDeadlineDay(el)} className={detectSelected()}>{el}</div>
+    <div onClick={() => newDeadlineDay(el)} className={detectSelected()}>
+        <p>{el}</p>
+    </div>
   )
 }
 
