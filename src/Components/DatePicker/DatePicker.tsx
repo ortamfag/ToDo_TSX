@@ -1,4 +1,4 @@
-import React, { MouseEvent, ChangeEvent, useState, useEffect} from 'react'
+import React, { MouseEvent, useState, useEffect} from 'react'
 import MonthDay from '../MonthDay/MonthDay';
 import './DatePicker.scss'
 import { deadlineSlice }  from '../../store/reducers/DeadlineSlice';
@@ -10,10 +10,9 @@ interface Props {
     dayOfDate: number;
     monthOfDate: number;
     yearOfDate: number;
-    updateDeadline: (value: Date) => void
 }
 
-function DatePicker({months, todayDate, dayOfDate, monthOfDate, yearOfDate, updateDeadline}: Props) {
+function DatePicker({months, todayDate, dayOfDate, monthOfDate, yearOfDate}: Props) {
 
     const { date } = deadlineSlice.actions
 	const dispatch = useAppDispatch()
@@ -143,7 +142,6 @@ function DatePicker({months, todayDate, dayOfDate, monthOfDate, yearOfDate, upda
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 19.5L7.5 12L15 4.5" stroke='white'/>
                         </svg>
-
                     </div>
 
                     <div className='mth'>{`${months[selectedMonth]} ${' '} ${selectedYear}`}</div>
@@ -162,8 +160,8 @@ function DatePicker({months, todayDate, dayOfDate, monthOfDate, yearOfDate, upda
                                 el={el} 
                                 key={key} 
                                 selectedDay={selectedDay} 
-                                selectedYear={selectedYear} 
-                                selectedMonth={selectedMonth} 
+                                selectedMonth={selectedMonth}
+                                selectedYear={selectedYear}  
                                 deadlineYear={deadlineYear} 
                                 deadlineMonth={deadlineMonth}
                                 newDeadlineDay={newDeadlineDay}

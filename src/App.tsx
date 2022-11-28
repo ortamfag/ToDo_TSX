@@ -1,4 +1,4 @@
-import React, {FC, ChangeEvent, MouseEvent, useState} from 'react';
+import React, {FC, ChangeEvent, useState} from 'react';
 import './App.scss'
 import { ITask } from './Interfaces';
 import TaskInput from './Components/TaskInput/TaskInput';
@@ -6,21 +6,12 @@ import TodoTask from './Components/TodoTask/TodoTask';
 import CompleteTask from './Components/CompleteTask/CompleteTask';
 import DatePicker from './Components/DatePicker/DatePicker';
 
-import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { deadlineSlice } from './store/reducers/DeadlineSlice';
-
 
 const App: FC = () => {
-	//redux
-	const { deadlineText } = useAppSelector(state => state.deadlineReducer)
-	const { date } = deadlineSlice.actions
-	const dispatch = useAppDispatch()
-
-
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
 
 	const [task, setTask] = useState<string>('');
-	const [deadline, setDeadLine] = useState<string>('Date of deadline');
+	const [deadline, setDeadLine] = useState<string>('Date of deadline'); //не нужно
 	const [todoList, setTodoList] = useState<ITask[]>([]);
 	const [completeList, setCompleteList] = useState<ITask[]>([]);
 
@@ -39,30 +30,14 @@ const App: FC = () => {
 	const yearOfDate = todayDate.getFullYear()
 
   	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    	let typeNameEvent = event.currentTarget.name;
     	let typeNameEventVal = event.currentTarget.value;
-
-    	switch(typeNameEvent){
-      		case 'Task':
-        		setTask(typeNameEventVal)
-        		break;
-      		case 'Deadline':
-        		setDeadLine(typeNameEventVal)
-        		break;        
-    	}
+		setTask(typeNameEventVal)
   	}
-
-	const updateDeadline = (value: Date) => {
-		setDeadLine(String(value))
-	}
 
   	const addTask = (): void => {
     	const newTask = { taskName: task, deadline: deadline }
-		console.log(newTask.deadline)
-		
     	setTodoList([...todoList, newTask])
     	setTask("")
-    	setDeadLine('Date of deadline')
 		toggleModal()
   	}
 
@@ -94,7 +69,6 @@ const App: FC = () => {
 							<div className="input_container">
 								<TaskInput
 									task={task}
-									inputName={"Task"}
 									handleChange={handleChange}/>
 
 								<DatePicker
@@ -102,9 +76,7 @@ const App: FC = () => {
 									dayOfDate={dayOfDate}
 									monthOfDate={monthOfDate}
 									yearOfDate={yearOfDate}
-									months={months}
-									updateDeadline={updateDeadline}
-									/>
+									months={months}/>
 							</div>
 
 							<button onClick={addTask} className='addTask createTask'>

@@ -1,8 +1,7 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import {useAppSelector } from '../../hooks/redux';
 import { ITask } from '../../Interfaces'
 import './TodoTask.scss'
-import { deadlineSlice }  from '../../store/reducers/DeadlineSlice';
 
 interface Props {
     task: ITask;
@@ -10,10 +9,7 @@ interface Props {
 }
 
 const TodoTask = ({ task, completeTask }: Props) => {
-	//redux
 	const { deadlineText } = useAppSelector(state => state.deadlineReducer)
-
-	console.log(deadlineText)
 
 	return (
     	<div className='task'>
@@ -26,7 +22,7 @@ const TodoTask = ({ task, completeTask }: Props) => {
 
         	<div className='task_content'>
             	<span>{task.taskName}</span>
-            	<span>{deadlineText}</span>
+            	<span>until {deadlineText}</span>
         	</div>
     	</div>
   	)

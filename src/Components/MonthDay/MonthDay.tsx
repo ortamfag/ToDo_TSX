@@ -12,7 +12,8 @@ interface Props {
     newDeadlineDay: (el: number) => void
 }
 
-function MonthDay({el, selectedDay, selectedYear, selectedMonth, newDeadlineDay, deadlineYear, deadlineMonth}: Props) {
+function MonthDay({el, selectedDay, selectedMonth, selectedYear, newDeadlineDay, deadlineYear, deadlineMonth}: Props) {
+
     const detectSelected = (): string => {
         if (selectedDay === el && selectedMonth === deadlineMonth && selectedYear === deadlineYear) {
             return 'day selected'

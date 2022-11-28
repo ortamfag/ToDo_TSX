@@ -2,28 +2,18 @@ import React, { ChangeEvent } from 'react'
 import './TaskInput.scss'
 
 interface Props {
-    inputName: string;
-    task?: string;
-    deadline?: string;
+    task: string;
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function TaskInput({inputName, task, deadline, handleChange}: Props) {
-    let inputPlaceholder
-    switch(inputName) {
-        case 'Task':
-            inputPlaceholder = 'Your task'
-            break
-        case 'Deadline':
-            inputPlaceholder = 'Deadline (in days)'
-    }
+function TaskInput({task, handleChange}: Props) {
   return (
     <input 
         className='task_input'
-        type={inputName === 'Task' ? 'text' : 'date'}
-        name={inputName}
-        placeholder={inputPlaceholder}
-        value={inputName === 'Task' ? task : deadline}
+        type='text'
+        name='Task'
+        placeholder='Your task'
+        value={task}
         onChange={handleChange}/>
   )
 }
