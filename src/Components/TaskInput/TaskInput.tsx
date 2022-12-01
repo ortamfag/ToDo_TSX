@@ -14,7 +14,8 @@ function TaskInput({task, handleChange}: Props) {
         name='Task'
         placeholder='Your task'
         value={task}
-        onChange={handleChange}/>
+        onChange={handleChange}
+        />
   )
 }
 

@@ -31,14 +31,17 @@ const App: FC = () => {
 
   	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     	let typeNameEventVal = event.currentTarget.value;
-		setTask(typeNameEventVal)
   	}
 
   	const addTask = (): void => {
     	const newTask = { taskName: task, deadline: deadline }
-    	setTodoList([...todoList, newTask])
-    	setTask("")
-		toggleModal()
+        if (newTask.taskName.length !== 0) {
+            setTodoList([...todoList, newTask])
+            setTask("")
+            toggleModal()
+        } else {
+            alert("Task can't be empty")
+        }
   	}
 
   	const completeTask = (TaskNameToDelete: string) => {
@@ -70,6 +73,8 @@ const App: FC = () => {
 								<TaskInput
 									task={task}
 									handleChange={handleChange}/>
+
+                                <p className='input_container__about'>Choose the deadline date</p>
 
 								<DatePicker
 									todayDate={todayDate}
