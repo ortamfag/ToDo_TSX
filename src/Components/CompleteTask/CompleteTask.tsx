@@ -1,10 +1,9 @@
 import React from 'react'
 import {useAppSelector } from '../../hooks/redux';
-import { ITask } from '../../Interfaces'
 import './CompleteTask.scss'
 
 interface Props {
-    task: ITask;
+    task: string;
 }
 
 const TodoTask = ({ task }: Props) => {
@@ -19,7 +18,7 @@ const TodoTask = ({ task }: Props) => {
         	</button>
 
         	<div className='task_content'>
-            	<span><s>{task.taskName}</s></span>
+            	<span><s>{task}</s></span>
             	<span>until {deadlineText}</span>
         	</div>
     	</div>

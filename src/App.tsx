@@ -1,6 +1,5 @@
 import React, {FC, ChangeEvent, useState} from 'react';
 import './App.scss'
-import { ITask } from './Interfaces';
 import TaskInput from './Components/TaskInput/TaskInput';
 import TodoTask from './Components/TodoTask/TodoTask';
 import CompleteTask from './Components/CompleteTask/CompleteTask';
@@ -11,9 +10,8 @@ const App: FC = () => {
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
 
 	const [task, setTask] = useState<string>('');
-	const [deadline, setDeadLine] = useState<string>('Date of deadline'); //не нужно
-	const [todoList, setTodoList] = useState<ITask[]>([]);
-	const [completeList, setCompleteList] = useState<ITask[]>([]);
+	const [todoList, setTodoList] = useState<string[]>([]);
+	const [completeList, setCompleteList] = useState<string[]>([]);
 
 	const toggleModal = () => {
 		setIsModalVisible(wasModalVisible => !wasModalVisible) 
@@ -31,12 +29,12 @@ const App: FC = () => {
 
   	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     	let typeNameEventVal = event.currentTarget.value;
+        setTask(typeNameEventVal)
   	}
 
   	const addTask = (): void => {
-    	const newTask = { taskName: task, deadline: deadline }
-        if (newTask.taskName.length !== 0) {
-            setTodoList([...todoList, newTask])
+        if (task.length !== 0) {
+            setTodoList([...todoList, task])
             setTask("")
             toggleModal()
         } else {
@@ -45,11 +43,9 @@ const App: FC = () => {
   	}
 
   	const completeTask = (TaskNameToDelete: string) => {
-    	const completeTask = { taskName: TaskNameToDelete, deadline: deadline }
-    	setCompleteList([...completeList, completeTask].reverse())
-
+    	setCompleteList([...completeList, TaskNameToDelete].reverse())
     	setTodoList(todoList.filter((task) => {
-      		return task.taskName !== TaskNameToDelete
+      		return task !== TaskNameToDelete
     	}))
   	}
 
@@ -104,7 +100,7 @@ const App: FC = () => {
         
         		<div className="todoList">
           			<h3>Tasks - {todoList.length}</h3>
-          			{todoList.map((task: ITask, key: number) => {
+          			{todoList.map((task: string, key: number) => {
             			return (
               				<TodoTask key={key} task={task} completeTask={completeTask} />
             			);
@@ -113,7 +109,7 @@ const App: FC = () => {
 
         		<div className='completeList'>
 					<h3>Complete tasks - {completeList.length}</h3>
-					{completeList.map((task: ITask, key: number) => {
+					{completeList.map((task: string, key: number) => {
 						return (
 							<CompleteTask key={key} task={task} />
 						)
