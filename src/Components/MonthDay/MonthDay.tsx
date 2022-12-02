@@ -1,5 +1,5 @@
-import React from 'react'
-import './MonthDay.scss'
+import React from 'react';
+import './MonthDay.scss';
 
 interface Props {
     el: number;
@@ -9,23 +9,22 @@ interface Props {
     deadlineYear: number;
     deadlineMonth: number;
 
-    newDeadlineDay: (el: number) => void
+    newDeadlineDay: (el: number) => void;
 }
 
-function MonthDay({el, selectedDay, selectedMonth, selectedYear, newDeadlineDay, deadlineYear, deadlineMonth}: Props) {
-
+function MonthDay({ el, selectedDay, selectedMonth, selectedYear, newDeadlineDay, deadlineYear, deadlineMonth }: Props) {
     const detectSelected = (): string => {
         if (selectedDay === el && selectedMonth === deadlineMonth && selectedYear === deadlineYear) {
-            return 'day selected'
+            return 'day selected';
         } else {
-            return 'day'
+            return 'day';
         }
-    }
-  return (
-    <div onClick={() => newDeadlineDay(el)} className={detectSelected()}>
-        <p>{el}</p>
-    </div>
-  )
+    };
+    return (
+        <div onClick={() => newDeadlineDay(el)} className={detectSelected()}>
+            <p>{el}</p>
+        </div>
+    );
 }
 
-export default MonthDay
+export default MonthDay;
