@@ -24,7 +24,8 @@ const App = () => {
         'March', 'April', 'May',
         'June', 'July', 'August',
         'September', 'October', 'November',
-        'December'];
+        'December',
+    ];
     const monthOfDate = todayDate.getMonth();
     const weekDayOfDate = todayDate.toLocaleString('en-En', {
         weekday: 'long',
@@ -42,7 +43,6 @@ const App = () => {
             setTask('');
             toggleModal();
         } else {
-            // eslint-disable-next-line no-alert
             alert("Task can't be empty");
         }
     };
@@ -93,9 +93,7 @@ const App = () => {
                 </div>
                     <h1>{`Hello, today is ${dayOfDate} ${months[monthOfDate]}, ${weekDayOfDate}`}</h1>
                     <h2>
-                        What are we going
-                        <span className="title_span">ToDo</span>
-                        ?
+                        What are we going <span className="title_span"> ToDo</span>?
                     </h2>
                     <button type="button" onClick={toggleModal} className="addTask">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,17 +104,22 @@ const App = () => {
                     </button>
                     <div className="todoList">
                         <h3>
-                            Tasks -
-                            {todoList.length}
+                            Tasks - {todoList.length}
                         </h3>
-                        {todoList.map((task: string) => <TodoTask task={task} completeTask={completeTask} />)}
+                        {todoList.map((task: string, key: number) => (
+                            <TodoTask
+                            task={task}
+                            key={key}
+                            completeTask={completeTask}
+                            />
+                        ))}
                     </div>
                     <div className="completeList">
                         <h3>
-                            Complete tasks -
-                            {completeList.length}
+                            Complete tasks - {completeList.length}
                         </h3>
-                        {completeList.map((task: string) => <CompleteTask task={task} />)}
+                        {completeList.map((task: string, key: number) => (
+                            <CompleteTask task={task} key={key} />))}
                     </div>
             </main>
         </div>

@@ -57,6 +57,7 @@ const DatePicker = ({
                 break;
             default:
                 amountDays = 31;
+                break;
         }
 
         const daysInMonths: number[] = [];
@@ -97,12 +98,12 @@ const DatePicker = ({
     const formatDate = (date: Date): string => {
         let day = date.getDate();
         if (day < 10) {
-            day = Number(`'0' + ${day}`);
+            day = Number('0' + day);
         }
 
         let month = date.getMonth() + 1;
         if (month < 10) {
-            month = Number(`'0' + ${month}`);
+            month = Number('0' + month);
         }
         const year = date.getFullYear();
 
@@ -121,7 +122,7 @@ const DatePicker = ({
 
     useEffect(() => {
         if (selectedDay !== stateDay) {
-            setDeadlineDate(new Date(`${selectedYear} + '-' + ${(selectedMonth + 1)} + '-' + ${selectedDay}`));
+            setDeadlineDate(new Date(selectedYear + '-' + (selectedMonth + 1) + '-' + selectedDay));
             setStateDay(selectedDay);
         }
 
@@ -138,8 +139,8 @@ const DatePicker = ({
             <div className="datePicker_selected">{formatDate(deadlineDate)}</div>
 
             <div
-            onClick={toggleDatePicker}
-            className={isDatesActive === true ? 'datePicker_dates datePicker_dates__active' : 'datePicker_dates'}
+                onClick={toggleDatePicker}
+                className={isDatesActive === true ? 'datePicker_dates datePicker_dates__active' : 'datePicker_dates'}
             >
                 <div className="datePicker_dates__month">
                     <div onClick={goToPrevMonth} className="datePicker_arrows prev-nth">
@@ -158,9 +159,10 @@ const DatePicker = ({
                 </div>
 
                 <div className="datePicker_dates__days">
-                    {monthDays.map((el: number) => (
+                    {monthDays.map((el: number, key: number) => (
                             <MonthDay
                                 el={el}
+                                key={key}
                                 selectedDay={selectedDay}
                                 selectedMonth={selectedMonth}
                                 selectedYear={selectedYear}

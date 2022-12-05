@@ -29,9 +29,9 @@ module.exports = {
     ],
     rules: {
         indent: 'off',
-        'linebreak-style': 0,
         '@typescript-eslint/indent': 'off',
         'react/jsx-indent': 'off',
+        'linebreak-style': 0,
         quotes: ['off'],
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': 'off',
@@ -51,6 +51,10 @@ module.exports = {
                 unnamedComponents: 'arrow-function',
             },
         ],
+        'no-alert': 'off',
+        'react/no-array-index-key': 'off',
+        'prefer-template': 'off',
+        'react/jsx-one-expression-per-line': 'off',
     },
     settings: {
         'import/resolver': {

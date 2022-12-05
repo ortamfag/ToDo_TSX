@@ -36,8 +36,7 @@ const TodoTask = ({ task, completeTask }: Props) => {
             <div className="task_content">
                 <span>{task}</span>
                 <span>
-                    until
-                    {deadlineText}
+                    until {deadlineText}
                 </span>
             </div>
         </div>

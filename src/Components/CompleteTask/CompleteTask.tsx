@@ -33,8 +33,7 @@ const CompleteTask = ({ task }: Props) => {
                     <s>{task}</s>
                 </span>
                 <span>
-                    until
-                    {deadlineText}
+                    until  { deadlineText }
                 </span>
             </div>
         </div>
