@@ -6,8 +6,15 @@ interface Props {
     handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function TaskInput({ task, handleChange }: Props) {
-    return <input className='task_input' type='text' name='Task' placeholder='Your task' value={task} onChange={handleChange} />;
-}
+const TaskInput = ({ task, handleChange }: Props) => (
+    <input
+        className="task_input"
+        type="text"
+        name="Task"
+        placeholder="Your task"
+        value={task}
+        onChange={handleChange}
+    />
+);
 
 export default TaskInput;

@@ -1,4 +1,3 @@
-import { IDeadline } from '../../models/IDeadline';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface DeadlineState {
@@ -8,17 +7,18 @@ interface DeadlineState {
 
 const initialState: DeadlineState = {
     deadlineText: 'test',
-    isExist: false
-}
+    isExist: false,
+};
 
 export const deadlineSlice = createSlice({
     name: 'deadlineText',
     initialState,
     reducers: {
         date(state, action: PayloadAction<string>) {
-            state.deadlineText = action.payload
-        }
-    }
-})
+            const newState = state;
+            newState.deadlineText = action.payload;
+        },
+    },
+});
 
 export default deadlineSlice.reducer;

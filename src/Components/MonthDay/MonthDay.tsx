@@ -12,19 +12,20 @@ interface Props {
     newDeadlineDay: (el: number) => void;
 }
 
-function MonthDay({ el, selectedDay, selectedMonth, selectedYear, newDeadlineDay, deadlineYear, deadlineMonth }: Props) {
+const MonthDay = ({
+ el, selectedDay, selectedMonth, selectedYear, newDeadlineDay, deadlineYear, deadlineMonth,
+}: Props) => {
     const detectSelected = (): string => {
         if (selectedDay === el && selectedMonth === deadlineMonth && selectedYear === deadlineYear) {
             return 'day selected';
-        } else {
-            return 'day';
         }
+        return 'day';
     };
     return (
         <div onClick={() => newDeadlineDay(el)} className={detectSelected()}>
             <p>{el}</p>
         </div>
     );
-}
+};
 
 export default MonthDay;
