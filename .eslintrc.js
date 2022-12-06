@@ -29,7 +29,7 @@ module.exports = {
         indent: 'off',
         '@typescript-eslint/indent': 'off',
         'react/jsx-indent': 'off',
-        'linebreak-style': 0,
+        'linebreak-style': 'off',
         quotes: ['off'],
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': 'off',
@@ -41,12 +41,23 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/no-noninteractive-element-interactions': 'off',
         'react/jsx-indent-props': 'off',
-        'max-len': ['error', { code: 120 }],
+        'max-len': [
+            'error',
+            { code: 120, ignoreComments: true, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true },
+        ],
         'react/function-component-definition': [
             2,
             {
                 namedComponents: 'arrow-function',
                 unnamedComponents: 'arrow-function',
+            },
+        ],
+        'jsx-a11y/label-has-for': [
+            2,
+            {
+                required: {
+                    every: ['id'],
+                },
             },
         ],
         'no-alert': 'off',
