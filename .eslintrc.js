@@ -10,9 +10,10 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'airbnb',
         'airbnb-typescript',
+        'plugin:prettier/recommended',
+        'prettier',
     ],
-    overrides: [
-    ],
+    overrides: [],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 'latest',
@@ -23,10 +24,7 @@ module.exports = {
         project: ['./tsconfig.json'],
         tsconfigRootDir: './',
     },
-    plugins: [
-        'react',
-        '@typescript-eslint',
-    ],
+    plugins: ['react', '@typescript-eslint', 'prettier'],
     rules: {
         indent: 'off',
         '@typescript-eslint/indent': 'off',
@@ -55,6 +53,12 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'prefer-template': 'off',
         'react/jsx-one-expression-per-line': 'off',
+        'prettier/prettier': [
+            'error',
+            {
+                endOfLine: 'auto',
+            },
+        ],
     },
     settings: {
         'import/resolver': {

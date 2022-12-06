@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface DeadlineState {
     deadlineText: string;
-    isExist: boolean
+    isExist: boolean;
 }
 
 const initialState: DeadlineState = {

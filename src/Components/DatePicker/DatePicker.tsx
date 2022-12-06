@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState, useEffect } from 'react';
+import { MouseEvent, useState, useEffect } from 'react';
 import MonthDay from '../MonthDay/MonthDay';
 import './DatePicker.scss';
 import { deadlineSlice } from '../../store/reducers/DeadlineSlice';
@@ -12,9 +12,7 @@ interface Props {
     yearOfDate: number;
 }
 
-const DatePicker = ({
- months, todayDate, dayOfDate, monthOfDate, yearOfDate,
-}: Props) => {
+const DatePicker = ({ months, todayDate, dayOfDate, monthOfDate, yearOfDate }: Props) => {
     const { date } = deadlineSlice.actions;
     const dispatch = useAppDispatch();
 
@@ -37,7 +35,7 @@ const DatePicker = ({
     const [stateMonth, setStateMonth] = useState<number>(0);
 
     const createDays = (selectedMonth: number) => {
-        let amountDays :number;
+        let amountDays: number;
 
         switch (selectedMonth) {
             case 2:
@@ -135,42 +133,41 @@ const DatePicker = ({
     });
 
     return (
-        <div onClick={toggleDatePicker} className="datePicker">
-            <div className="datePicker_selected">{formatDate(deadlineDate)}</div>
+        <div onClick={toggleDatePicker} className='datePicker'>
+            <div className='datePicker_selected'>{formatDate(deadlineDate)}</div>
 
             <div
                 onClick={toggleDatePicker}
-                className={isDatesActive === true ? 'datePicker_dates datePicker_dates__active' : 'datePicker_dates'}
-            >
-                <div className="datePicker_dates__month">
-                    <div onClick={goToPrevMonth} className="datePicker_arrows prev-nth">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 19.5L7.5 12L15 4.5" stroke="white" />
+                className={isDatesActive === true ? 'datePicker_dates datePicker_dates__active' : 'datePicker_dates'}>
+                <div className='datePicker_dates__month'>
+                    <div onClick={goToPrevMonth} className='datePicker_arrows prev-nth'>
+                        <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='M15 19.5L7.5 12L15 4.5' stroke='white' />
                         </svg>
                     </div>
 
-                    <div className="mth">{`${months[selectedMonth]} ${' '} ${selectedYear}`}</div>
+                    <div className='mth'>{`${months[selectedMonth]} ${' '} ${selectedYear}`}</div>
 
-                    <div onClick={goToNextMonth} className="datePicker_arrows next-mth">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 4.5L16.5 12L9 19.5" stroke="white" />
+                    <div onClick={goToNextMonth} className='datePicker_arrows next-mth'>
+                        <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='M9 4.5L16.5 12L9 19.5' stroke='white' />
                         </svg>
                     </div>
                 </div>
 
-                <div className="datePicker_dates__days">
+                <div className='datePicker_dates__days'>
                     {monthDays.map((el: number, key: number) => (
-                            <MonthDay
-                                el={el}
-                                key={key}
-                                selectedDay={selectedDay}
-                                selectedMonth={selectedMonth}
-                                selectedYear={selectedYear}
-                                deadlineYear={deadlineYear}
-                                deadlineMonth={deadlineMonth}
-                                newDeadlineDay={newDeadlineDay}
-                            />
-                        ))}
+                        <MonthDay
+                            el={el}
+                            key={key}
+                            selectedDay={selectedDay}
+                            selectedMonth={selectedMonth}
+                            selectedYear={selectedYear}
+                            deadlineYear={deadlineYear}
+                            deadlineMonth={deadlineMonth}
+                            newDeadlineDay={newDeadlineDay}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

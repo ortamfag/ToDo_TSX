@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import './TaskInput.scss';
 
 interface Props {
@@ -8,10 +8,10 @@ interface Props {
 
 const TaskInput = ({ task, handleChange }: Props) => (
     <input
-        className="task_input"
-        type="text"
-        name="Task"
-        placeholder="Your task"
+        className='task_input'
+        type='text'
+        name='Task'
+        placeholder='Your task'
         value={task}
         onChange={handleChange}
     />

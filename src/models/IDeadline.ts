@@ -1,3 +1,3 @@
 export interface IDeadline {
-    deadline: number
+    deadline: number;
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import './MonthDay.scss';
 
 interface Props {
@@ -13,7 +12,13 @@ interface Props {
 }
 
 const MonthDay = ({
- el, selectedDay, selectedMonth, selectedYear, newDeadlineDay, deadlineYear, deadlineMonth,
+    el,
+    selectedDay,
+    selectedMonth,
+    selectedYear,
+    newDeadlineDay,
+    deadlineYear,
+    deadlineMonth,
 }: Props) => {
     const detectSelected = (): string => {
         if (selectedDay === el && selectedMonth === deadlineMonth && selectedYear === deadlineYear) {
