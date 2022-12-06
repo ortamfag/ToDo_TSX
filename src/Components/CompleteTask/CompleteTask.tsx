@@ -1,12 +1,13 @@
-import { useAppSelector } from '../../hooks/redux';
+// import { useAppSelector } from '../../hooks/redux';
 import './CompleteTask.scss';
 
 interface Props {
     task: string;
+    deadline: string;
 }
 
-const CompleteTask = ({ task }: Props) => {
-    const { deadlineText } = useAppSelector((state) => state.deadlineReducer);
+const CompleteTask = ({ task, deadline }: Props) => {
+    // const { deadlineText } = useAppSelector((state) => state.deadlineReducer);
 
     return (
         <div className='task'>
@@ -30,7 +31,7 @@ const CompleteTask = ({ task }: Props) => {
                 <span>
                     <s>{task}</s>
                 </span>
-                <span>until {deadlineText}</span>
+                <span>until {deadline}</span>
             </div>
         </div>
     );

@@ -1,21 +1,24 @@
 import { FC, ChangeEvent, useState } from 'react';
-// import { useAppSelector } from './hooks/redux';
+import { useAppSelector } from './hooks/redux';
 import './App.scss';
 import TaskInput from './Components/TaskInput/TaskInput';
 import TodoTask from './Components/TodoTask/TodoTask';
 import CompleteTask from './Components/CompleteTask/CompleteTask';
 import DatePicker from './Components/DatePicker/DatePicker';
 
-// изменить массив с тасками, сделав их объектами, чтобы в каждом item было название задачи и дедлайн
+interface ITodoList {
+    task: string;
+    deadline: string;
+}
 
 const App: FC = () => {
-    // const { deadlineText } = useAppSelector((state) => state.deadlineReducer);
+    const { deadlineText } = useAppSelector((state) => state.deadlineReducer);
 
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
     const [task, setTask] = useState<string>('');
-    const [todoList, setTodoList] = useState<string[]>([]);
-    const [completeList, setCompleteList] = useState<string[]>([]);
+    const [todoList, setTodoList] = useState<ITodoList[]>([]);
+    const [completeList, setCompleteList] = useState<ITodoList[]>([]);
 
     const toggleModal = () => {
         setIsModalVisible((wasModalVisible) => !wasModalVisible);
@@ -49,9 +52,14 @@ const App: FC = () => {
         setTask(typeNameEventVal);
     };
 
+    const TodoObj: ITodoList = {
+        task,
+        deadline: deadlineText,
+    };
+
     const addTask = (): void => {
         if (task.length !== 0) {
-            setTodoList([...todoList, task]);
+            setTodoList([...todoList, TodoObj]);
             setTask('');
             toggleModal();
         } else {
@@ -60,8 +68,15 @@ const App: FC = () => {
     };
 
     const completeTask = (TaskNameToDelete: string) => {
-        setCompleteList([...completeList, TaskNameToDelete].reverse());
-        setTodoList(todoList.filter((task) => task !== TaskNameToDelete));
+        todoList.map((item) => {
+            if (item.task === TaskNameToDelete) {
+                TodoObj.task = TaskNameToDelete;
+                TodoObj.deadline = item.deadline;
+            }
+            return item;
+        });
+        setCompleteList([...completeList, TodoObj].reverse());
+        setTodoList(todoList.filter((item) => item.task !== TaskNameToDelete));
     };
 
     return (
@@ -114,14 +129,19 @@ const App: FC = () => {
                 </button>
                 <div className='todoList'>
                     <h3>Tasks - {todoList.length}</h3>
-                    {todoList.map((task: string, key: number) => (
-                        <TodoTask task={task} key={key} completeTask={completeTask} />
+                    {todoList.map((TodoObj: ITodoList, key: number) => (
+                        <TodoTask
+                            task={TodoObj.task}
+                            deadline={TodoObj.deadline}
+                            key={key}
+                            completeTask={completeTask}
+                        />
                     ))}
                 </div>
                 <div className='completeList'>
                     <h3>Complete tasks - {completeList.length}</h3>
-                    {completeList.map((task: string, key: number) => (
-                        <CompleteTask task={task} key={key} />
+                    {completeList.map((TodoObj: ITodoList, key: number) => (
+                        <CompleteTask task={TodoObj.task} deadline={TodoObj.deadline} key={key} />
                     ))}
                 </div>
             </main>
