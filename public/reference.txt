@@ -1,0 +1,12 @@
+1. https://www.behance.net/gallery/155873921/Task-management-landing-page?tracking_source=search_projects%7Ctodo - общая концепция
+2. https://www.behance.net/gallery/157754015/To-Do-List-UI-Design?tracking_source=search_projects%7Ctodo - прикольные фильтры
+3. https://www.behance.net/gallery/154601139/Todo-List-Dashboard?tracking_source=search_projects%7Ctodo+app - статистика
+4. https://www.behance.net/gallery/99524507/To-Do-UX-Intern-Project?tracking_source=search_projects%7Ctodo+app - красивое
+5. https://www.behance.net/gallery/81041685/TODA?tracking_source=search_projects%7Ctodo+app - классная мобильная версия
+6. https://www.behance.net/gallery/147625661/Todo-Mobile-App-Interaction?tracking_source=search_projects%7Ctodo+app - можно добавить
+раздел типа подробно о дне - и добавлять таски на определенные часы
+7. https://www.behance.net/gallery/117776375/Daily-UI-042-ToDo-List?tracking_source=search_projects%7Ctodo+app - еще один вариант мобилки
+8. https://www.behance.net/gallery/157485413/NFT-Landing-Page-Design?tracking_source=search_projects%7Ctodo+landing+page - стилистика такая
+
+
+требуется переключатель темы

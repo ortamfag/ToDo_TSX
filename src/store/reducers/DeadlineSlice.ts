@@ -15,7 +15,6 @@ export const deadlineSlice = createSlice({
     initialState,
     reducers: {
         date(state, action: PayloadAction<string>) {
-            // const newState = state;
             // eslint-disable-next-line no-param-reassign
             state.deadlineText = action.payload;
         },
